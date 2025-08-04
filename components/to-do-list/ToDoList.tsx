@@ -11,6 +11,7 @@ import {
 import { Image } from "expo-image";
 import { useState } from "react";
 import image1 from "../../assets/images/icon.png";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { cssInterop } from "nativewind";
 cssInterop(Image, { className: "style" });
 
@@ -33,6 +34,10 @@ const ToDoList = () => {
     setItem([...item, itemselect]);
     setName("");
     setDescription("");
+  };
+
+  const removeItem = (id: number) => {
+    setItem(item.filter((item) => item.id !== id));
   };
   return (
     <KeyboardAvoidingView>
@@ -86,11 +91,17 @@ const ToDoList = () => {
           data={item}
           renderItem={({ item }) => (
             <Pressable
+              onPress={() => removeItem(item.id)}
               style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }]}
             >
-              <View className="flex items-center justify-center p-4 border border-gray-300 rounded-lg mb-2">
+              <View className="flex items-start justify-between p-4 border border-gray-300 rounded-lg mb-2">
                 <Text>{item.title}</Text>
                 <Text>{item.description}</Text>
+                <MaterialCommunityIcons
+                  name="notebook-edit"
+                  size={24}
+                  color="black"
+                />
               </View>
             </Pressable>
           )}

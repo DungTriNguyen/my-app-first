@@ -7,6 +7,7 @@ import {
   Button,
   KeyboardAvoidingView,
   Keyboard,
+  Modal,
 } from "react-native";
 import { Image } from "expo-image";
 import { useState } from "react";
@@ -23,7 +24,7 @@ interface Item {
 const ToDoList = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-
+  const [modalVisible, setModalVisible] = useState(false);
   const [item, setItem] = useState([
     { id: 1, title: "Buy groceries", description: "Milk, Bread, Eggs" },
     { id: 2, title: "Walk the dog", description: "30 minutes in the park" },
@@ -94,10 +95,13 @@ const ToDoList = () => {
               onPress={() => removeItem(item.id)}
               style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1.0 }]}
             >
-              <View className="flex items-start justify-between p-4 border border-gray-300 rounded-lg mb-2">
-                <Text>{item.title}</Text>
-                <Text>{item.description}</Text>
+              <View className="flex flex-row items-center justify-between p-4 border border-gray-300 rounded-lg mb-2">
+                <View>
+                  <Text>{item.title}</Text>
+                  <Text>{item.description}</Text>
+                </View>
                 <MaterialCommunityIcons
+                onPress={() => setModalVisible(true)}
                   name="notebook-edit"
                   size={24}
                   color="black"
@@ -106,6 +110,16 @@ const ToDoList = () => {
             </Pressable>
           )}
         />
+
+        <Modal visible={false} animationType="slide">
+          <View>
+            <Text></Text>
+            <TextInput/>
+             <Text></Text>
+            <TextInput/>
+
+          </View>
+        </Modal>
       </View>
     </KeyboardAvoidingView>
   );

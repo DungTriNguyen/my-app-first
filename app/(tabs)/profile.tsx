@@ -1,11 +1,11 @@
 import {  View } from 'react-native';
 import React from 'react'
 
-const TabThreeScreen = () => {
+const Profile = () => {
   return (
     <View>
 
     </View>
   )
 }
-export default TabThreeScreen
+export default Profile

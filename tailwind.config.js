@@ -7,14 +7,13 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
-      container: {
-        center: true,
-        padding: "2rem",
-        screens: {
-          "ios": "800px",
-          "android": "800px",
-        },
-      }
+     container: {
+      padding: '16px',
+      screens: {
+        DEFAULT: '393px',
+      },
+      center: true,
+    },
     },
   },
   plugins: [],

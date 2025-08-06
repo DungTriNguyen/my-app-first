@@ -17,10 +17,10 @@ import {
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import image1 from "../../assets/images/logo.png";
-import ButtonPressable from "../ui/button-pressable";
-import ButtonTouchableHightLight from "../ui/button-touchablehightlight";
-import ButtonTouchAbleWithoutFeedback from "../ui/button-touchablewithoutfeedback";
-import ButtonTouchAbleOpacity from "../ui/button-touchsableopacity";
+import ButtonPressable from "../ui-learn/button-pressable";
+import ButtonTouchableHightLight from "../ui-learn/button-touchablehightlight";
+import ButtonTouchAbleWithoutFeedback from "../ui-learn/button-touchablewithoutfeedback";
+import ButtonTouchAbleOpacity from "../ui-learn/button-touchsableopacity";
 import LinkingComponent from "../ui/linking";
 cssInterop(Image, { className: "style" });
 

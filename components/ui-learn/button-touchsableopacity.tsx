@@ -1,14 +1,17 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native';
-import { Text } from 'react-native';
+import { TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
 
 interface ButtonTouchAbleOpacityProps {
-  onPress?: () => void;
-
+  onPress?: () => void
 }
-const ButtonTouchAbleOpacity = ({props}:{props: ButtonTouchAbleOpacityProps}) => {
+const ButtonTouchAbleOpacity = ({ props }: { props: ButtonTouchAbleOpacityProps }) => {
   return (
-    <TouchableOpacity  onPress={props.onPress} activeOpacity={0.7} className='text-center items-center bg-[#DDDDDD] rounded-lg'> 
+    <TouchableOpacity
+      onPress={props.onPress}
+      activeOpacity={0.7}
+      className='items-center rounded-lg bg-[#DDDDDD] text-center'
+    >
       <Text className='p-4'>Click me</Text>
     </TouchableOpacity>
   )

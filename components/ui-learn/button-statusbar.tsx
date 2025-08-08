@@ -1,11 +1,9 @@
 import React from 'react'
 
-import { StatusBar as RNStatusBar } from 'react-native';
+import { StatusBar as RNStatusBar } from 'react-native'
 
 const ButtonStatusBar = () => {
-  return (
-    <RNStatusBar barStyle="dark-content" backgroundColor="#fb9b43" hidden />
-  );
-};
+  return <RNStatusBar barStyle='dark-content' backgroundColor='#fb9b43' hidden />
+}
 
-export default ButtonStatusBar;
+export default ButtonStatusBar

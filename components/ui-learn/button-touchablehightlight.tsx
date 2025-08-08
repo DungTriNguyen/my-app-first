@@ -1,12 +1,16 @@
 import React from 'react'
-import { TouchableHighlight,Text } from 'react-native'
+import { TouchableHighlight, Text } from 'react-native'
 
 interface ButtonTouchableHightLightProps {
-  onPress: () => void;
+  onPress: () => void
 }
-const ButtonTouchableHightLight = ({props}:{props: ButtonTouchableHightLightProps}) => {
+const ButtonTouchableHightLight = ({ props }: { props: ButtonTouchableHightLightProps }) => {
   return (
-    <TouchableHighlight onPress={props.onPress} underlayColor={"#DDDDDD"} className='text-center items-center bg-[#DDDDDD] rounded-lg '>
+    <TouchableHighlight
+      onPress={props.onPress}
+      underlayColor={'#DDDDDD'}
+      className='items-center rounded-lg bg-[#DDDDDD] text-center '
+    >
       <Text className='p-4'>Click me</Text>
     </TouchableHighlight>
   )

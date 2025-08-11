@@ -12,14 +12,15 @@ import { VideoRef } from 'react-native-video'
 import MyVideo from '@/components/section/Video'
 import { Image, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import { useRouter } from 'expo-router'
+import { useRouter, useLocalSearchParams } from 'expo-router'
 const MovieDetail = () => {
+  const { slug } = useLocalSearchParams()
   const router = useRouter()
   const [openVideo, setOpenVideo] = useState(false)
   const videoRef = useRef<VideoRef>(null)
 
   const WatchingVideo = () => {
-    router.push(`/movie/watch/film-hay-org`)
+    router.push(`/movies/${slug}/video`)
   }
   return (
     <SafeAreaProvider>
@@ -29,14 +30,13 @@ const MovieDetail = () => {
             <View className=''>
               <Image source={movieDetailImg} className='w-full' />
               <Pressable
-
                 onPress={WatchingVideo}
                 className='absolute bottom-[-25] right-5 flex size-14 items-center justify-center rounded-full bg-white'
               >
                 <Image source={playIcon} className='ml-1 h-7 w-6' />
               </Pressable>
             </View>
-            <View className=' gap-4 py-4'>
+            <View className='container flex-1 gap-4 py-4'>
               <View className='gap-4'>
                 <Title title='Squid Game 2' />
                 <Category text='2024 * PG-13 * 2h 46m' />
@@ -96,7 +96,7 @@ const MovieDetail = () => {
 
                 <TouchableOpacity
                   className='z-50 mx-2 flex flex-row items-center justify-center rounded-lg bg-[#AB8BFF] py-3.5'
-                  onPress={() => alert('Toi la Dung')}
+                  onPress={() => router.push('/(tabs)')}
                 >
                   <Image source={icons.arrow} className='mr-1 mt-0.5 size-5 rotate-180' tintColor='#000' />
                   <Text className='text-base font-semibold text-black'>Go Back</Text>
@@ -106,14 +106,6 @@ const MovieDetail = () => {
 
             {openVideo ? (
               <View>
-                {/* <Video
-                  source={video.videoTest}
-                  // source={{ uri: video.videoTest }} // hoặc require('@/assets/video/test.mp4')
-                  style={{ width: "100%", height: "100%" }}
-                  controls
-                  resizeMode="contain"
-                  paused={false}
-                /> */}
                 <MyVideo />
               </View>
             ) : (

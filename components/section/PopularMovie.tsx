@@ -28,7 +28,7 @@ const SlideMovie = () => {
         data={items}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
-          <Link href='/movie/detail'>
+          <Link href={`/movies/${item.id}`}>
             <View className='flex flex-col gap-2'>
               <View>
                 <Image source={item.img} className='h-48 w-32 rounded-lg' resizeMode='cover' />

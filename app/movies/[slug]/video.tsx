@@ -2,7 +2,7 @@ import { itemsImage } from '@/constants/ItemsImage'
 import { video } from '@/constants/video'
 import { VideoView, useVideoPlayer } from 'expo-video'
 import { FlatList, Image, Pressable, Text, View } from 'react-native'
-
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import { useRef } from 'react'
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
 
@@ -10,7 +10,7 @@ const dataComment = [
   {
     id: 1,
     avatar: itemsImage.img1,
-    comment: 'Phim như cứt',
+    comment: 'Phim như ...',
   },
   {
     id: 2,
@@ -30,17 +30,34 @@ const dataComment = [
   {
     id: 5,
     avatar: itemsImage.img5,
-    comment: 'Bô cái thằng đạo diễn',
+    comment: 'Phim osscar',
   },
   {
     id: 6,
     avatar: itemsImage.img6,
-    comment: 'Tổ sư chúng m',
+    comment: 'Game over',
+  },
+  {
+    id: 7,
+    avatar: itemsImage.img6,
+    comment: 'Game over',
+  },
+  {
+    id: 8,
+    avatar: itemsImage.img6,
+    comment: 'Game over',
+  },
+  {
+    id: 9,
+    avatar: itemsImage.img6,
+    comment: 'Game over',
   },
 ]
 
 export default function MyVideo() {
   const playerRef = useRef<any>(null)
+  const { slug } = useLocalSearchParams()
+  console.log('hahha:', slug)
 
   useVideoPlayer(video.videoTest, player => {
     if (player) {
@@ -79,25 +96,27 @@ export default function MyVideo() {
               <Text className='text-white'>Pause</Text>
             </Pressable>
           </View>
-          <View className='flex-1 gap-6'>
+          <View className='container flex-1 gap-6'>
             <View className='gap-4'>
-              <Text className='text-white'>Tập film</Text>
+              <Text className='text-white'>Page film</Text>
               {/* <FlatList
         keyExtractor={}
         data={}
         renderItem={}
         /> */}
             </View>
-            <View className='gap-4 flex-1'>
+            <View className='flex-1 gap-4'>
               <Text className='text-white'>Comments</Text>
               <FlatList
                 keyExtractor={dataComment => dataComment.id + ''}
                 data={dataComment}
                 className='gap-4'
-                contentContainerStyle={{gap: 24}}
+                contentContainerStyle={{ gap: 24 }}
                 renderItem={({ item }) => (
                   <View className='flex-row gap-4'>
-                    <View className='rounded-full'><Image source={item.avatar} className='w-8 h-8 rounded-full '/></View>
+                    <View className='rounded-full'>
+                      <Image source={item.avatar} className='h-8 w-8 rounded-full ' />
+                    </View>
                     <View>
                       <Text className='text-white'>{item.comment}</Text>
                     </View>

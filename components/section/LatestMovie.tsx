@@ -92,7 +92,7 @@ const LatestMovie = () => {
         keyExtractor={item => item.id + ''}
         columnWrapperClassName='gap-4'
         renderItem={({ item }) => (
-          <Link href={`/movie/detail`}>
+          <Link href={`/movies/${item.id}`}>
             <View className='flex flex-col gap-2'>
               <View>
                 <Image source={item.img} className='h-48 w-32 rounded-lg' resizeMode='cover' />

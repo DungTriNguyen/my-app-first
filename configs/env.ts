@@ -1,0 +1,13 @@
+export const ENV = {
+  API_URL: process.env.EXPO_PUBLIC_API_URL || '',
+  BASE_URL: process.env.EXPO_PUBLIC_BASE_URL || '',
+  GOOGLE_MAPS_API_KEY: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+  MOVIE_API_KEY : process.env.EXPO_PUBLIC_MOVIE_API_KEY || '',
+  IMAGE_URL: process.env.EXPO_PUBLIC_IMAGE_URL || '',
+  APPWRITE_ENDPOINT: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT || '',
+  APPWRITE_PROJECT: process.env.EXPO_PUBLIC_APPWRITE_PROJECT || '',
+  APPWRITE_DATABASE_ID: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID || '',
+  APPWRITE_COLLECTION_ID: process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID || ''
+} as const
+
+export type EnvKeys = keyof typeof ENV

@@ -8,7 +8,7 @@ export interface TitleProps {
 }
 
 const Title = ({ title, className }: TitleProps) => {
-  return <Text className={twMerge('text-[12px] font-bold text-white', className)}>{title}</Text>
+  return <Text numberOfLines={1} ellipsizeMode='tail' className={twMerge('text-[12px] font-bold text-white', className)}>{title}</Text>
 }
 
 export default Title

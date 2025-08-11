@@ -1,11 +1,14 @@
 import { itemsImage } from '@/constants/ItemsImage'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, View, Image } from 'react-native'
 import TitleContent from '../ui/title-content'
 import Category from '../ui/category'
 import Title from '../ui/title'
 import LabelStart from '../ui/label-start'
 import { Link } from 'expo-router'
+import { getListFilm } from '@/services/productService'
+import { ENV } from '@/configs/env'
+import MovieCard from './MovieCard'
 
 const items = [
   {
@@ -79,12 +82,14 @@ const items = [
     img: itemsImage.img5,
   },
 ]
-const LatestMovie = () => {
+
+
+const LatestMovie = ({latestMovie}: {latestMovie: Movie[]}) => {
   return (
     <View className='container mb-[100px]'>
-      <TitleContent title='Latest movies' />
+      <TitleContent title='Latest movies' className='mb-[14px]'/>
       <FlatList
-        data={items}
+        data={latestMovie}
         numColumns={3}
         showsHorizontalScrollIndicator={false}
         contentContainerClassName='gap-6'
@@ -92,17 +97,7 @@ const LatestMovie = () => {
         keyExtractor={item => item.id + ''}
         columnWrapperClassName='gap-4'
         renderItem={({ item }) => (
-          <Link href={`/movies/${item.id}`}>
-            <View className='flex flex-col gap-2'>
-              <View>
-                <Image source={item.img} className='h-48 w-32 rounded-lg' resizeMode='cover' />
-                <View className='absolute -left-6 bottom-0 rounded-full px-2'></View>
-              </View>
-              <Title title={item.title} />
-              <LabelStart numberStart={item.start} />
-              <Category text={item.category} />
-            </View>
-          </Link>
+          <MovieCard item={item} />
         )}
       ></FlatList>
     </View>

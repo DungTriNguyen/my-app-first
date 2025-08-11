@@ -3,17 +3,19 @@ import { Image, TextInput, View } from 'react-native'
 import { icons } from '@/constants/icons'
 import { twMerge } from 'tailwind-merge'
 interface SearchProps {
+  onPress?: () => void
   placeholder: string
   value?: string
-  onChangeText?: () => void
+  onChangeText?: (text: string) => void
   className?: string
 }
 
-const SearchInput = ({ placeholder, value, onChangeText, className }: SearchProps) => {
+const SearchInput = ({ placeholder, value, onChangeText, className, onPress }: SearchProps) => {
   return (
     <View className={twMerge('flex-row items-center rounded-full bg-[#0F0D23] px-5 py-4', className)}>
       <Image source={icons.search} className='h-5 w-5' resizeMode='contain' tintColor='#AB8BFF' />
       <TextInput
+        onPress={onPress}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}

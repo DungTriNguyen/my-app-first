@@ -1,13 +1,15 @@
 import { images } from '@/constants/images'
 import { itemsImage } from '@/constants/ItemsImage'
 import MaskedView from '@react-native-masked-view/masked-view'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, Image, Text, View } from 'react-native'
 import Title from '../ui/title'
 import Category from '../ui/category'
 import LabelStart from '../ui/label-start'
 import TitleContent from '../ui/title-content'
 import { Link } from 'expo-router'
+
+import { getListFilm, getMovieDetail } from '@/services/productService'
 const items = [
   { id: 1, title: 'Movie 1', category: 'Action • Movie', start: '4.6', img: itemsImage.img1 },
   { id: 2, title: 'Movie 2', category: 'Action • Movie', start: '4.6', img: itemsImage.img2 },
@@ -17,14 +19,17 @@ const items = [
 ]
 
 const SlideMovie = () => {
+
+
+
   return (
-    <View className='container py-4'>
+    <View className='container py-8'>
       <TitleContent title='Popular movies' className='mb-[14px]' />
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 16 }}
-        contentContainerClassName='gap-8'
+        contentContainerClassName='gap-8' 
         data={items}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (

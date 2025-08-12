@@ -2,6 +2,7 @@ import MovieCard from '@/components/section/MovieCard'
 import SearchInput from '@/components/ui/search-input'
 import { icons } from '@/constants/icons'
 import { images } from '@/constants/images'
+import { updateSearchCount } from '@/services/appWriteService'
 import { getListFilm } from '@/services/productService'
 import React, { useEffect, useState } from 'react'
 import { FlatList, Image, View } from 'react-native'
@@ -9,18 +10,35 @@ const Search = () => {
   const [search, setSearch] = useState<string>('')
   const [movies, setMovies] = useState<Movie[]>([])
   useEffect(() => {
-    const fetchData = async () => {
-      const dataSearch = await getListFilm({ query: search })
-      setMovies(dataSearch)
-    }
-    console.log('searchasdasda: ', movies)
-    fetchData()
+    const timeoutId = setTimeout(() => {
+      const fetchData = async () => {
+        try{
+          const dataSearch = await getListFilm({ query: search })
+          setMovies(dataSearch)
+        }catch(error){
+          console.log(error)
+        }
+      }
+      fetchData()
+      if(search.trim()){
+        const fetchData = async () => {
+          try{
+            const dataSearch = await getListFilm({ query: search })
+            setMovies(dataSearch)
+            if(dataSearch.length > 0 && dataSearch?.[0]){
+              await updateSearchCount(search, dataSearch[0] as Movie)
+            }
+          }catch(error){  
+            console.log(error)
+          }
+        }
+        fetchData()
+       console.log('searchasdcnndhjf: ', search);
+       
+      }
+    }, 500)
+    return () => clearTimeout(timeoutId)
   }, [search])
-  console.log('searchasdcnndhjf: ', search);
-  
-console.log('searchasdcnndhjf: ', movies);
-
-
   const onChangeText = (text: string) => {
     setSearch(text)
   }
